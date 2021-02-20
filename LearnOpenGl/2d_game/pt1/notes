@@ -1,0 +1,5 @@
+Minimal Architecture of a 2D Game with Pure OpenGl
+
+- maintains global game object
+- keeps local copies of relevant state objects like keys
+- prefers to have single external resource loading class, instead of coupling it with more cv types

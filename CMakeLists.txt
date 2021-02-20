@@ -12,4 +12,5 @@ find_package(OpenGL REQUIRED)
 add_subdirectory(external)
 
 # compile sources
-add_subdirectory(src)
+add_subdirectory(red_book)
+add_subdirectory(LearnOpenGl)
