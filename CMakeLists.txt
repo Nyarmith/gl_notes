@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(sample_glfw_glad)
 
 find_package(OpenGL REQUIRED)
+find_package(glm REQUIRED)
 
 # add deps
 add_subdirectory(external)
