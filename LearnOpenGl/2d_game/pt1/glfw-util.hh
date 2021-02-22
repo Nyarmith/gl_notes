@@ -1,12 +1,13 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <stdexcept>
 #include <cstdio>
 
 namespace glfw {
 
-int SCR_WIDTH = 800;
-int SCR_HEIGHT = 600;
+int SRC_WIDTH{0};
+int SRC_HEIGHT{0};
 
 void error_callback(int error, const char* description)
 {
@@ -24,8 +25,7 @@ static void setup(GLFWwindow *&win, const char* window_name, int width, int heig
     glfwSetErrorCallback(error_callback);
     if (!glfwInit())
     {
-        fprintf(stderr,"Failed to initialize glfw\n");
-        exit(-1);
+        throw std::runtime_error("Failed to initialize glfw\n");
     }
 
     // direct opengl version
@@ -43,7 +43,7 @@ static void setup(GLFWwindow *&win, const char* window_name, int width, int heig
     if (!win)
     {
         glfwTerminate();
-        fprintf(stderr,"Failed to create GLFW window\n");
+        throw std::runtime_error("Failed to create GLFW window\n");
     }
 
     glfwSetWindowSizeCallback(win, glfw_resize_cb);
@@ -52,8 +52,7 @@ static void setup(GLFWwindow *&win, const char* window_name, int width, int heig
     if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)))
     {
         glfwTerminate();
-        fprintf(stderr,"Failed to initialize GLAD\n");
-        exit(-1);
+        throw std::runtime_error("Failed to initialize GLAD\n");
     }
     glfwSwapInterval(1);
 

@@ -1,3 +1,5 @@
+#include "app.hh"
+
 void GLTetris::Update(float dt)
 {
 }

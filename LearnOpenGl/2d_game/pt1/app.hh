@@ -1,3 +1,6 @@
+#ifndef __APP_HH__
+#define __APP_HH__
+
 class GLTetris
 {
 public:
@@ -13,3 +16,5 @@ public:
   void Update(float dt);
   void Render();
 };
+
+#endif

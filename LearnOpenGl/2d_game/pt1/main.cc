@@ -1,8 +1,4 @@
-// stolen from learnopengl.com
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-#include "LoadShaders.h"
+#include "glfw-util.hh"
 
 #include <iostream>
 
@@ -14,7 +10,7 @@ void processInput(GLFWwindow *window);
 int main()
 {
   GLFWwindow* window;
-  glfw::setup(window);
+  glfw::setup(window, "demo", 800, 600);
 
   // GL Part -- START
   enum VAO_IDs { Triangles, NumVAOs };
@@ -30,12 +26,12 @@ int main()
   glBindVertexArray(VAOs[Triangles]);
 
   GLfloat vertices[NumVertices][2] = {
-    { -0.90, -0.90 },
-    {  0.85, -0.90 },
-    { -0.90,  0.85 },
-    {  0.90, -0.85 },
-    {  0.90,  0.90 },
-    { -0.85,  0.90 },
+    { -1.00, -1.00 },
+    {  1.00, -1.00 },
+    { -1.00,  1.00 },
+    {  1.00, -1.00 },
+    {  1.00,  1.00 },
+    { -1.00,  1.00 },
   };
 
   glGenBuffers(NumBuffers, Buffers);
@@ -43,35 +39,35 @@ int main()
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices),
                vertices, GL_STATIC_DRAW);
 
-  ShaderInfo shaders[] = {
-    { GL_VERTEX_SHADER, "triangles.vert" },
-    { GL_FRAGMENT_SHADER, "triangles.frag" },
-    { GL_NONE, NULL },
-  };
+  //ShaderInfo shaders[] = {
+  //  { GL_VERTEX_SHADER, "triangles.vert" },
+  //  { GL_FRAGMENT_SHADER, "triangles.frag" },
+  //  { GL_NONE, NULL },
+  //};
 
-  GLuint program = LoadShaders(shaders);
-  glUseProgram(program);
+  //GLuint program = LoadShaders(shaders);
+  //glUseProgram(program);
 
-  glVertexAttribPointer(vPosition, 2, GL_FLOAT,
-                        GL_FALSE, 0, BUFFER_OFFSET(0));
-  glEnableVertexAttribArray(vPosition);
+  //glVertexAttribPointer(vPosition, 2, GL_FLOAT,
+  //                      GL_FALSE, 0, BUFFER_OFFSET(0));
+  //glEnableVertexAttribArray(vPosition);
 
-  while (!glfwWindowShouldClose(window))
-  {
-    processInput(window);
+  //while (!glfwWindowShouldClose(window))
+  //{
+  //  processInput(window);
 
-    glClear(GL_COLOR_BUFFER_BIT);
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glBindVertexArray(VAOs[Triangles]);
-    glDrawArrays(GL_TRIANGLES, 0, NumVertices);
-    glFlush();
+  //  glClear(GL_COLOR_BUFFER_BIT);
+  //  glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+  //  glBindVertexArray(VAOs[Triangles]);
+  //  glDrawArrays(GL_TRIANGLES, 0, NumVertices);
+  //  glFlush();
 
-    glfwSwapBuffers(window);
-    glfwPollEvents();
-  }
+  //  glfwSwapBuffers(window);
+  //  glfwPollEvents();
+  //}
 
   // GL Part -- END
-  gl::teardown();
+  glfw::teardown();
   return 0;
 }
 
